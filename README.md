@@ -1,7 +1,7 @@
 # gpu-ntt
 Number Theoretic Transform Implementation on GPU for FHE Applications
 
-
+--------------------
 
 ## File Descriptions:
 
@@ -25,6 +25,9 @@ includes gpu functions:
 includes:
 
 the main program for applying ntt, then intt on a randomly generated array
+
+
+--------------------
 
 
 *Coded by: Can Elgezen, Özgün Özerk* \
