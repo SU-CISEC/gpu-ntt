@@ -1,3 +1,6 @@
+// coded by Can Elgezen and Özgün Özerk
+// contributed by Ahmet Can Mert, Erkay Savaş, Erdinç Öztürk
+
 #include <iostream>
 using std::cout;  // yes we are that lazy
 using std::endl;  // :)
