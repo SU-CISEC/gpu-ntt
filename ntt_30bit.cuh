@@ -1,3 +1,6 @@
+// coded by Can Elgezen and Özgün Özerk
+// contributed by Ahmet Can Mert, Erkay Savaş, Erdinç Öztürk
+
 #pragma once
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
