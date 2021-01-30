@@ -25,3 +25,7 @@ includes gpu functions:
 includes:
 
 the main program for applying ntt, then intt on a randomly generated array
+
+
+*Coded by: Can Elgezen, Özgün Özerk*
+*Contributed by: Ahmet Can Mert, Erkay Savaş, Erdinç Öztürk*
