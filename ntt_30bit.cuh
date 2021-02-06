@@ -14,8 +14,7 @@ __device__ __forceinline__ void singleBarrett(unsigned long long& a, unsigned& q
     rx *= q;
     a -= rx;
 
-    if (a >= q)
-        a -= q;
+    a -= q * (a >= q);
 }
 
 __global__ void CTBasedNTTInnerSingle(unsigned a[], unsigned q, unsigned mu, int qbit, unsigned psi_powers[])
@@ -24,14 +23,14 @@ __global__ void CTBasedNTTInnerSingle(unsigned a[], unsigned q, unsigned mu, int
 
     extern __shared__ unsigned shared_array[];
 
-#pragma unroll
+    #pragma unroll
     for (int iteration_num = 0; iteration_num < 2; iteration_num++)
     {  // copying to shared memory from global
         int global_tid = local_tid + iteration_num * 1024;
         shared_array[global_tid] = a[global_tid + blockIdx.x * 2048];
     }
 
-#pragma unroll
+    #pragma unroll
     for (int length = 1; length < 2048; length *= 2)
     {  // iterations for ntt
         int step = (2048 / length) / 2;
@@ -63,7 +62,7 @@ __global__ void CTBasedNTTInnerSingle(unsigned a[], unsigned q, unsigned mu, int
         __syncthreads();
     }
 
-#pragma unroll
+    #pragma unroll
     for (int iteration_num = 0; iteration_num < 2; iteration_num++)
     {  // copying back to global from shared
         int global_tid = local_tid + iteration_num * 1024;
@@ -80,7 +79,7 @@ __global__ void GSBasedINTTInnerSingle(unsigned a[], unsigned q, unsigned mu, in
 
     unsigned q2 = (q + 1) >> 1;
 
-#pragma unroll
+    #pragma unroll
     for (int iteration_num = 0; iteration_num < 2; iteration_num++)
     {  // copying to shared memory from global
         int global_tid = local_tid + iteration_num * 1024;
@@ -89,7 +88,7 @@ __global__ void GSBasedINTTInnerSingle(unsigned a[], unsigned q, unsigned mu, in
 
     __syncthreads();
 
-#pragma unroll
+    #pragma unroll
     for (int length = 1024; length >= 1; length /= 2)
     {  // iterations for intt
         int step = (2048 / length) / 2;
@@ -126,7 +125,7 @@ __global__ void GSBasedINTTInnerSingle(unsigned a[], unsigned q, unsigned mu, in
         __syncthreads();
     }
 
-#pragma unroll
+    #pragma unroll
     for (int iteration_num = 0; iteration_num < 2; iteration_num++)
     {  // copying back to global from shared
         int global_tid = local_tid + iteration_num * 1024;

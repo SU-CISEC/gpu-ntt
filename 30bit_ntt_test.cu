@@ -8,7 +8,7 @@ using std::endl;  // :)
 #include "ntt_30bit.cuh"
 #include "helper.h"
 
-#define check 1
+#define check 1 // set to 0 if there is no need to check for the correctness of operations
 
 int main()
 {
@@ -17,7 +17,7 @@ int main()
     int size_array = sizeof(unsigned) * n;
     int size = sizeof(unsigned);
 
-    unsigned q = 536608769, psi = 284166, psiinv = 208001377, ninv = 536346753;  // parameter initialization
+    unsigned q = 536608769, psi = 284166, psiinv = 208001377;  // parameter initialization
     unsigned int q_bit = 29;
 
     /****************************************************************
